@@ -17,7 +17,7 @@ from pyreddit.pyreddit import helpers
 from pyreddit.pyreddit.services.services_wrapper import ServicesWrapper
 from telegram import Message, Update  # type: ignore
 from telegram.ext import CallbackContext  # type: ignore
-from telegram.ext import CallbackQueryHandler, Filters, MessageHandler, Updater
+from telegram.ext import CallbackQueryHandler, filters, MessageHandler, Updater
 
 import telereddit.config.config as config
 from telereddit.linker import Linker
@@ -118,7 +118,7 @@ def main() -> None:
     print("Listening...")
     dispatcher = updater.dispatcher
 
-    dispatcher.add_handler(MessageHandler(Filters.all, on_chat_message))
+    dispatcher.add_handler(MessageHandler(filters.ALL, on_chat_message))
     dispatcher.add_handler(CallbackQueryHandler(on_callback_query))
     updater.start_webhook(
         listen="0.0.0.0",
