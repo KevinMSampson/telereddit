@@ -68,9 +68,9 @@ jobs:
         # Duration after which artifact will expire in days.
         # retention-days: # optional, default is 1
 
-    - name: Deploy GitHub Pages site
-      uses: actions/deploy-pages@v2.0.0
-      with:
+#    - name: Deploy GitHub Pages site
+#      uses: actions/deploy-pages@v2.0.0
+#      with:
         # Should this action only emit build telemetry instead of deploying the build artifact?
         # emit_telemetry: # optional, default is false
         # The status of the previous build.
@@ -84,9 +84,22 @@ jobs:
         # Time in milliseconds between two deployment status report (default: 5 seconds)
         # reporting_interval: # optional, default is 5000
         # Name of the artifact to deploy
-        artifact_name: gh-pages
+#        artifact_name: gh-pages
         # Is this attempting to deploy a pull request as a GitHub Pages preview site? (NOTE: This feature is only in alpha currently and is not available to the public!)
         # preview: # optional, default is false
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: docs
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          artifact_name: gh-pages
 
 #    - name: Deploy docs to Github Pages
 #      uses: JamesIves/github-pages-deploy-action@releases/v3
