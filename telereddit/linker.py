@@ -7,7 +7,7 @@ from pyreddit.pyreddit.exceptions import RedditError, SubredditError
 from pyreddit.pyreddit.models.media import ContentType, Media
 from telegram import InputMediaPhoto  # type: ignore
 from telegram import InputMediaDocument, InputMediaVideo
-from telegram.bot import Bot, Message  # type: ignore
+from telegram import Bot, Message  # type: ignore
 
 from telereddit.config.config import (
     DELETE_KEYBOARD,
